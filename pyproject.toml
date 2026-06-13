@@ -1,0 +1,44 @@
+[project]
+name = "notion-telegram-notifier"
+version = "1.0.0"
+description = "Notion → Telegram bot: personal push notifications when a Notion task is assigned to you or changes status. Built for teams on Notion guest seats where native notifications stop working."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Gleb Sergeevich Loktionov" }]
+keywords = [
+    "notion",
+    "telegram",
+    "telegram-bot",
+    "notion-api",
+    "notifications",
+    "notion-telegram",
+    "task-notifications",
+    "aiogram",
+]
+dependencies = [
+    "aiogram>=3,<4",
+    "notion-client>=2.2,<3",
+    "aiosqlite>=0.19",
+]
+
+[project.urls]
+Homepage = "https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier"
+Repository = "https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["notify_bot"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["notify_bot/tests"]

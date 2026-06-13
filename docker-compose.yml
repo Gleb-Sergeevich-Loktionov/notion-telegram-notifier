@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  notify_bot:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - bot_data:/data
+    healthcheck:
+      # Heartbeat file must have been touched within the last 10 minutes
+      test: ["CMD", "python", "-c",
+             "import os, time; f='/tmp/notify_bot_heartbeat'; exit(0 if os.path.exists(f) and time.time()-os.path.getmtime(f)<600 else 1)"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  bot_data:
