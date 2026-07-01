@@ -42,7 +42,7 @@ async def conn():
     await c.close()
 
 
-# ── AdminFilter ────────────────────────────────────────────────
+# ── AdminFilter ─────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -108,7 +108,7 @@ async def test_admin_filter_allows_admin():
     assert called == [True]
 
 
-# ── Invite ─────────────────────────────────────────────────
+# ── Invite ──────────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -166,7 +166,7 @@ async def test_invite_invalidates_old_codes(conn):
     assert new_rec is not None
 
 
-# ── Rename ─────────────────────────────────────────────────
+# ── Rename ──────────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -245,7 +245,7 @@ async def test_rename_substring_safety(conn):
     assert "Аня Смолина" in updated.assignees
 
 
-# ── Pause / Resume ───────────────────────────────────────────
+# ── Pause / Resume ──────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio

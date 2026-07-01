@@ -16,7 +16,7 @@ from notify_bot.storage import db as db_mod, repo_employees, repo_invites
 from notify_bot.telegram import handlers_employee
 
 
-# ── helpers ───────────────────────────────────────────────
+# ── helpers ────────────────────────────────────────────────────────────────
 
 
 def _sha256(s: str) -> str:
@@ -86,7 +86,7 @@ def _msg(text: str, uid: int, msg_id: int = 1) -> Message:
     )
 
 
-# ── tests ─────────────────────────────────────────────────
+# ── tests ──────────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio

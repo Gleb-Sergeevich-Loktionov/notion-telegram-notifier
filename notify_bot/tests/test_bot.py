@@ -39,7 +39,7 @@ async def conn():
     await c.close()
 
 
-# ── bot module constants ───────────────────────────────────────
+# ── bot module constants ──────────────────────────────────────────────────────
 
 
 def test_employee_commands_non_empty():
@@ -78,7 +78,7 @@ def test_create_bot_returns_bot():
     assert isinstance(bot, Bot)
 
 
-# ── handlers_admin helpers ───────────────────────────────────
+# ── handlers_admin helpers ────────────────────────────────────────────────────
 
 
 def test_replace_in_json_list_replaces_exact_element():
@@ -111,7 +111,7 @@ def test_replace_in_json_list_substring_safety():
     assert "А" not in items
 
 
-# ── poller helpers ─────────────────────────────────────────
+# ── poller helpers ────────────────────────────────────────────────────────────
 
 
 def test_subtract_seconds_basic():
@@ -137,7 +137,7 @@ def test_event_kind_for_short_key():
     assert poller_mod._event_kind_for("only-one-part") == "unknown"
 
 
-# ── poller: NotionFatal keeps looping ──────────────────────────────
+# ── poller: NotionFatal keeps looping ────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -192,7 +192,7 @@ async def test_poller_notion_fatal_keeps_looping(conn):
     assert call_count[0] >= 1
 
 
-# ── poller: heartbeat ─────────────────────────────────────────
+# ── poller: heartbeat ─────────────────────────────────────────────────────────
 
 
 def test_touch_heartbeat_creates_file(tmp_path):

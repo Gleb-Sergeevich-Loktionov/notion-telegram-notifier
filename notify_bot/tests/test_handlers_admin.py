@@ -94,7 +94,7 @@ class FakeNotionClient:
         }
 
 
-# ── /invite ────────────────────────────────────────────────
+# ── /invite ───────────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -194,7 +194,7 @@ async def test_invite_no_client_creates_code_anyway(conn):
     assert "Любое Имя" in msg.replies[0]["text"]
 
 
-# ── /list ─────────────────────────────────────────────────
+# ── /list ─────────────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -233,7 +233,7 @@ async def test_list_shows_all_employees(conn):
     assert "111" in text
 
 
-# ── /rename ────────────────────────────────────────────────
+# ── /rename ───────────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -318,7 +318,7 @@ async def test_rename_updates_snapshot_reporter(conn):
     assert "Заказчик А" not in updated.reporter
 
 
-# ── /unbind ────────────────────────────────────────────────
+# ── /unbind ───────────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -368,7 +368,7 @@ async def test_unbind_happy_path(conn):
     assert emp["chat_id"] is None
 
 
-# ── /pause / /resume ────────────────────────────────────────
+# ── /pause / /resume ──────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio

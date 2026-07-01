@@ -18,7 +18,7 @@ from notify_bot.storage import db as db_mod
 from notify_bot.notion import projects as proj_mod
 
 
-# ── helpers ───────────────────────────────────────────────
+# ── helpers ──────────────────────────────────────────────────────────────────
 
 
 def _make_page_response(title_text: str) -> dict:
@@ -53,7 +53,7 @@ async def conn():
     await c.close()
 
 
-# ── tests ───────────────────────────────────────────────
+# ── tests ────────────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio

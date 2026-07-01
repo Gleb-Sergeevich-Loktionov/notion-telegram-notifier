@@ -15,7 +15,7 @@ from notify_bot.notion import poller as poller_mod
 from notify_bot.storage import db as db_mod, repo_employees, repo_snapshots, repo_state, repo_journal
 
 
-# ── Fakes ──────────────────────────────────────────────
+# ── Fakes ────────────────────────────────────────────────────────────────────
 
 
 def _make_settings(**overrides):
@@ -129,7 +129,7 @@ async def _run_one_cycle(conn, pages, settings=None, sender=None, checkpoint=Non
     return sender
 
 
-# ── AC Tests ────────────────────────────────────────────
+# ── AC Tests ─────────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio

@@ -34,7 +34,7 @@ from notify_bot.telegram import handlers_employee as he
 from notify_bot.telegram.fsm import EmployeeReg
 
 
-# ── fixtures & helpers ───────────────────────────────────────
+# ── fixtures & helpers ────────────────────────────────────────────────────────
 
 
 def _sha256(s: str) -> str:
@@ -119,7 +119,7 @@ class FakeBot:
         self.sent.append((chat_id, text))
 
 
-# ── /start tests ─────────────────────────────────────────
+# ── /start tests ─────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -184,7 +184,7 @@ async def test_start_muted_user_ignores_silently(conn, settings):
     assert msg.replies == []
 
 
-# ── enter_code tests ───────────────────────────────────────
+# ── enter_code tests ──────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -276,7 +276,7 @@ async def test_enter_code_valid_code_shows_confirm_keyboard(conn, settings):
     assert "Мария" in msg.replies[0]["text"]
 
 
-# ── confirm_name tests ───────────────────────────────────────
+# ── confirm_name tests ────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -369,7 +369,7 @@ async def test_confirm_name_rebind_notifies_admins(conn, settings):
     assert len(admin_msgs) == 1
 
 
-# ── /me tests ───────────────────────────────────────────
+# ── /me tests ─────────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -403,7 +403,7 @@ async def test_me_unbound_prompts_start(conn, settings):
     assert any("/start" in rep["text"] for rep in msg.replies)
 
 
-# ── helper ──────────────────────────────────────────────
+# ── helper ────────────────────────────────────────────────────────────────────
 
 
 def _get_handler(router, name: str):

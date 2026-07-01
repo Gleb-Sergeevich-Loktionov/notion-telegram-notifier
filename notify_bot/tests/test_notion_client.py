@@ -22,7 +22,7 @@ from notion_client.errors import APIResponseError
 from notify_bot.notion.client import NotionClient, NotionFatal, NotionRetryable
 
 
-# ── helpers ──────────────────────────────────────────────
+# ── helpers ──────────────────────────────────────────────────────────────────
 
 
 def _api_error(status: int, headers: dict | None = None) -> APIResponseError:
@@ -40,7 +40,7 @@ def _make_client() -> NotionClient:
     return NotionClient(auth="fake-token", database_id="db-123")
 
 
-# ── _call patching ──────────────────────────────────────────
+# ── _call patching ────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -147,7 +147,7 @@ async def test_request_network_error_retries_then_raises(monkeypatch):
     assert len(slept) == 3  # 3 backoff delays
 
 
-# ── pagination ─────────────────────────────────────────────
+# ── pagination ────────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -210,7 +210,7 @@ async def test_query_incremental_filter_when_after_given(monkeypatch):
     assert f["last_edited_time"]["on_or_after"] == "2024-01-01T10:00:00.000Z"
 
 
-# ── retrieve_db cache ────────────────────────────────────────
+# ── retrieve_db cache ─────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -243,7 +243,7 @@ async def test_retrieve_db_returns_cache_when_set(monkeypatch):
     assert result == {"properties": {"cached": True}}
 
 
-# ── close ───────────────────────────────────────────────
+# ── close ─────────────────────────────────────────────────────────────────────
 
 
 @pytest.mark.asyncio
@@ -288,7 +288,7 @@ async def test_close_without_background_task(monkeypatch):
     await client.close()
 
 
-# ── AsyncMock helper ───────────────────────────────────────
+# ── AsyncMock helper ─────────────────────────────────────────────────────────
 
 
 class AsyncMock:

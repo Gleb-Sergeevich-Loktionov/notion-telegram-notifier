@@ -87,7 +87,7 @@ docker compose exec notify_bot python -c "print('ok')"
 | `DONE_STATUS` | нет | `Готово` | Статус, при котором события назначения подавляются |
 | `PROJECT_CACHE_TTL` | нет | `86400` | TTL кэша названий проектов (сек) |
 | `INVITE_TTL` | нет | `86400` | TTL кода-приглашения (сек) |
-| `INVITE_MAX_ATTEMPTS` | нет | `3` | Неверных попыток до мьюта на 1 час |
+| `INVITE_MAX_ATTEMPTS` | нет | `3` | Неверных вводов кода за одну сессию регистрации до отмены диалога (отдельный механизм: 10 неудач с одного chat_id → мьют на 1 час) |
 | `HEARTBEAT_PATH` | нет | `/tmp/notify_bot_heartbeat` | Файл heartbeat (должен совпадать с healthcheck) |
 | `NOTION_BASE_URL` | нет | — | Альтернативный endpoint Notion API (тесты/демо) |
 
@@ -119,12 +119,14 @@ docker compose exec notify_bot python -c "print('ok')"
 **Бэкап**
 
 ```bash
-# Пока бот работает (режим WAL делает это безопасным)
-sqlite3 /path/to/bot.db ".backup /path/to/backup.db"
-
-# Или через Docker
-docker compose exec notify_bot sqlite3 /data/bot.db ".backup /data/backup.db"
+# Основной сценарий (Docker). База лежит в именованном томе bot_data.
+# В образе python:3.12-slim нет sqlite3 CLI, поэтому снимок делаем модулем
+# sqlite3 (метод .backup консистентен даже при работающем боте — режим WAL).
+docker compose exec notify_bot python -c "import sqlite3; s=sqlite3.connect('/data/bot.db'); d=sqlite3.connect('/data/backup.db'); s.backup(d); d.close(); s.close()"
 docker compose cp notify_bot:/data/backup.db ./backup.db
+
+# Локальный запуск без Docker (нужен установленный sqlite3 CLI):
+sqlite3 ./bot.db ".backup ./backup.db"
 ```
 
 **Восстановление**
@@ -273,7 +275,7 @@ docker compose exec notify_bot python -c "print('ok')"
 | `DONE_STATUS` | no | `Готово` | Status value that suppresses new-assignee events |
 | `PROJECT_CACHE_TTL` | no | `86400` | Project title cache TTL (seconds) |
 | `INVITE_TTL` | no | `86400` | Invite code TTL (seconds) |
-| `INVITE_MAX_ATTEMPTS` | no | `3` | Max wrong code attempts before 1-hour mute |
+| `INVITE_MAX_ATTEMPTS` | no | `3` | Wrong code entries per registration session before the dialog aborts (separate mechanism: 10 failures per chat_id → 1-hour mute) |
 | `HEARTBEAT_PATH` | no | `/tmp/notify_bot_heartbeat` | Heartbeat file (must match the healthcheck) |
 | `NOTION_BASE_URL` | no | — | Alternative Notion API endpoint (tests/demo) |
 
@@ -305,12 +307,14 @@ docker compose exec notify_bot python -c "print('ok')"
 **Backup**
 
 ```bash
-# While the bot is running (WAL mode makes this safe)
-sqlite3 /path/to/bot.db ".backup /path/to/backup.db"
-
-# Or via Docker
-docker compose exec notify_bot sqlite3 /data/bot.db ".backup /data/backup.db"
+# Primary (Docker). The database lives in the named volume bot_data.
+# The python:3.12-slim image has no sqlite3 CLI, so take the snapshot via the
+# sqlite3 module (.backup is consistent even while the bot runs — WAL mode).
+docker compose exec notify_bot python -c "import sqlite3; s=sqlite3.connect('/data/bot.db'); d=sqlite3.connect('/data/backup.db'); s.backup(d); d.close(); s.close()"
 docker compose cp notify_bot:/data/backup.db ./backup.db
+
+# Local run without Docker (requires the sqlite3 CLI installed):
+sqlite3 ./bot.db ".backup ./backup.db"
 ```
 
 **Restore**
