@@ -9,6 +9,7 @@ where Notion's native notifications stop working.
 уведомления Notion не работают.
 
 <p>
+  <a href="https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="Python" src="https://img.shields.io/badge/python-3.12-blue">
   <img alt="aiogram" src="https://img.shields.io/badge/aiogram-3.x-2CA5E0">
   <img alt="Notion API" src="https://img.shields.io/badge/Notion-API-black">
