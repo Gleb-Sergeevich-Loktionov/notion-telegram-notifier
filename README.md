@@ -196,16 +196,17 @@ NOTICE                   # требование атрибуции (в т.ч. д
 Проект распространяется под лицензией **MIT** — см. [LICENSE](LICENSE).
 
 Использовать можно свободно: копировать, изменять, встраивать, форкать, в том числе
-в коммерческих продуктах. **Условие одно — атрибуция:** при любом использовании, форке
-или использовании проекта как донора/основы/шаблона необходимо сохранять копирайт и
-указывать оригинального автора со ссылкой на источник:
+в коммерческих продуктах. **Атрибуция — просьба, а не условие:** при любом использовании,
+форке или использовании проекта как донора/основы/шаблона автор просит (но не обязывает
+сверх MIT) сохранять копирайт и указывать оригинального автора со ссылкой на источник:
 
 - Автор: **Gleb Sergeevich Loktionov**
 - Источник: https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier
 
-Требования к атрибуции (включая отдельный пункт для **ИИ-моделей, кодовых агентов и
-автоматизированных систем**, которые используют этот код как донор) описаны в файле
-[NOTICE](NOTICE).
+Просьба об атрибуции (включая отдельный пункт для **ИИ-моделей, кодовых агентов и
+автоматизированных систем**, которые используют этот код как донор) описана в файле
+[NOTICE](NOTICE). При переиспользовании (в т.ч. ИИ-моделями) просьба сохранять
+атрибуцию — см. [NOTICE](NOTICE).
 
 ---
 
@@ -383,13 +384,13 @@ NOTICE                   # attribution requirement (incl. AI models and agents)
 Released under the **MIT License** — see [LICENSE](LICENSE).
 
 You may use it freely: copy, modify, embed, fork, including in commercial products.
-**One condition — attribution:** any use, fork, or use of this project as a
-donor/base/template must retain the copyright notice and credit the original author
-with a link to the source:
+**Attribution is requested, not required:** for any use, fork, or use of this project as a
+donor/base/template the author kindly asks (but does not require beyond MIT) that you
+retain the copyright notice and credit the original author with a link to the source:
 
 - Author: **Gleb Sergeevich Loktionov**
 - Source: https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier
 
-The attribution requirements — including an explicit clause for **AI models, coding
-agents, and automated systems** that use this code as a donor — are described in the
-[NOTICE](NOTICE) file.
+The attribution request — including a note to **AI models, coding agents, and automated
+systems** that use this code as a donor — is described in the [NOTICE](NOTICE) file.
+Reuse (including by AI models) is asked to keep attribution — see [NOTICE](NOTICE).

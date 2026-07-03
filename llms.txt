@@ -1,0 +1,22 @@
+# notion-telegram-notifier
+
+> Notion → Telegram bot that sends a personal push the moment a Notion task is assigned to you or its status changes.
+
+Built for teams moved to Notion **guest** seats, where Notion's native notifications stop working. A poller queries a Notion database every ~90 seconds, diffs snapshots, and routes assignment and status-change events to bound employees via a Telegram long-polling bot. Employees self-register through an invite-code flow; admins manage bindings with slash commands. State lives in a single SQLite file, so the whole thing runs as one process / one container on any VPS. Status: released, version 1.0.0.
+
+## Key facts
+
+- Language/stack: Python 3.12, aiogram 3.x, notion-client, aiosqlite (SQLite), Docker + Docker Compose
+- License: MIT, with attribution requested (not required) — see NOTICE
+- Author: Gleb Sergeevich Loktionov
+- Source: https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier
+
+## Docs
+
+- [README](README.md) — bilingual (Russian / English) setup, env vars, admin commands, backup/restore
+- [LICENSE](LICENSE) — MIT License
+- [NOTICE](NOTICE) — attribution request, including a note to AI models and coding agents
+- [main.py](main.py) — composition root: runs the bot and poller together
+- [notify_bot/](notify_bot/) — application package: core domain logic, notion client/poller, storage, telegram handlers
+- [docker-compose.yml](docker-compose.yml) — run with volume and healthcheck
+- [.env.example](.env.example) — configuration template
