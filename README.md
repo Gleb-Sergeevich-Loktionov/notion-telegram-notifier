@@ -1,21 +1,35 @@
 # notion-telegram-notifier
 
-**Notion → Telegram notifications.** Get an instant personal Telegram push the moment a Notion
-task is assigned to you or its status changes. Built for teams moved to Notion **guest** seats,
-where Notion's native notifications stop working.
+Send personal Telegram notifications when Notion tasks are assigned or change status.
 
-**Уведомления из Notion в Telegram.** Мгновенный личный пуш в Telegram, как только вам назначили
-задачу в Notion или сменился её статус. Для команд на **гостевых** местах Notion, где родные
-уведомления Notion не работают.
+[![CI](https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier/actions/workflows/ci.yml) ![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square) ![License MIT](https://img.shields.io/badge/License-MIT-555555?style=flat-square) ![aiogram 3](https://img.shields.io/badge/aiogram-3-2CA5E0?style=flat-square) ![Notion REST API](https://img.shields.io/badge/Notion-REST%20API-333333?style=flat-square) ![SQLite WAL](https://img.shields.io/badge/SQLite-WAL-003B57?style=flat-square)
 
-<p>
-  <a href="https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier/actions/workflows/ci.yml/badge.svg"></a>
-  <img alt="Python" src="https://img.shields.io/badge/python-3.12-blue">
-  <img alt="aiogram" src="https://img.shields.io/badge/aiogram-3.x-2CA5E0">
-  <img alt="Notion API" src="https://img.shields.io/badge/Notion-API-black">
-  <img alt="SQLite" src="https://img.shields.io/badge/storage-SQLite-003B57">
-  <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-green">
-</p>
+## Key Engineering Highlights
+
+- Incremental polling uses a configurable overlap window, 300 seconds by default. The Notion client honors `Retry-After` for HTTP 429 and backs off on server and network errors.
+- The differ compares page snapshots and the router resolves events to bound Telegram accounts. Cold start initializes snapshots without sending notifications.
+- SQLite WAL stores six tables. Each page transaction writes its snapshot and journals successful sends under a unique `dedup_key`.
+- Employee invite codes are stored as SHA-256 hashes. Admin and employee handlers build fresh aiogram routers for each dispatcher.
+- Docker checks the heartbeat written after a completed poll cycle. The CI test suite contains 197 pytest tests.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    API["Notion REST API / Retry-After and backoff"] --> Poll["Incremental poller / overlap window"]
+    Poll --> Parse["Notion parser"]
+    Parse --> Diff["Snapshot differ"]
+    DB["SQLite WAL / snapshots, bindings, invites and send journal"] -->|prior snapshot| Diff
+    Diff --> Route["Notification router"]
+    DB -->|recipient bindings| Route
+    Route --> Tx["Poller transaction / check dedup_key"]
+    Tx -->|unjournaled messages| Sender["aiogram sender"] --> Telegram["Telegram"]
+    Sender -->|successful send| Tx
+    Tx -->|snapshot and send journal| DB
+    Telegram --> Handlers["Admin and employee handlers / SHA-256 invites"]
+    Handlers <--> DB
+    Poll --> Heartbeat["Heartbeat file"] --> Docker["Docker healthcheck"]
+```
 
 **Language / Язык:** [Русский](#русский) · [English](#english)
 
