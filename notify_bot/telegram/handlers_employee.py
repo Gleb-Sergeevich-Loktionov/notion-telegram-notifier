@@ -26,8 +26,6 @@ from notify_bot.telegram.fsm import EmployeeReg
 
 log = logging.getLogger(__name__)
 
-router = Router()
-
 # In-memory throttle: {chat_id: {"count": int, "muted_until": float}}
 _throttle: dict[int, dict] = {}
 
@@ -55,6 +53,7 @@ def _register_fail(chat_id: int) -> None:
 
 def make_router(conn: aiosqlite.Connection, settings) -> Router:
     """Create and return the employee router with injected dependencies."""
+    router = Router()
 
     @router.message(Command("start"))
     async def cmd_start(message: Message, state: FSMContext) -> None:

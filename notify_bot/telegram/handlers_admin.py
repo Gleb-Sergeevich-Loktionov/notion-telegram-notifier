@@ -28,8 +28,6 @@ log = logging.getLogger(__name__)
 _INVITE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
 _INVITE_CODE_LEN = 8
 
-router = Router()
-
 
 def _gen_code() -> str:
     return "".join(secrets.choice(_INVITE_ALPHABET) for _ in range(_INVITE_CODE_LEN))
@@ -46,6 +44,7 @@ def _expires_at(invite_ttl: int) -> str:
 
 def make_router(conn: aiosqlite.Connection, settings, notion_client=None) -> Router:
     """Create and return admin router with injected dependencies."""
+    router = Router()
 
     async def _get_schema_options() -> list[str]:
         """Get assignee option names from Notion DB schema cache."""

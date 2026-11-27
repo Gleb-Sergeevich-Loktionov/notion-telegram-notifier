@@ -70,6 +70,22 @@ def test_create_dispatcher_returns_dispatcher(conn):
     assert isinstance(dp, Dispatcher)
 
 
+def test_make_router_returns_fresh_router_each_call(conn):
+    """make_router creates an isolated Router instance without duplicating handlers."""
+    from notify_bot.telegram import handlers_employee
+
+    settings = _make_settings()
+    emp_a = handlers_employee.make_router(conn, settings)
+    emp_b = handlers_employee.make_router(conn, settings)
+    assert emp_a is not emp_b
+    assert len(emp_a.message.handlers) == len(emp_b.message.handlers)
+
+    adm_a = handlers_admin.make_router(conn, settings)
+    adm_b = handlers_admin.make_router(conn, settings)
+    assert adm_a is not adm_b
+    assert len(adm_a.message.handlers) == len(adm_b.message.handlers)
+
+
 def test_create_bot_returns_bot():
     """create_bot returns an aiogram Bot instance."""
     from aiogram import Bot

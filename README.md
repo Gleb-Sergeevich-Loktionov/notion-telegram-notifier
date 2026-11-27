@@ -189,25 +189,11 @@ docker-compose.yml       # запуск с volume и healthcheck
 pyproject.toml           # зависимости, метаданные, конфиг pytest
 .env.example             # шаблон конфигурации
 LICENSE                  # MIT
-NOTICE                   # требование атрибуции (в т.ч. для ИИ-моделей и агентов)
 ```
 
 ### Лицензия
 
-Проект распространяется под лицензией **MIT** — см. [LICENSE](LICENSE).
-
-Использовать можно свободно: копировать, изменять, встраивать, форкать, в том числе
-в коммерческих продуктах. **Атрибуция — просьба, а не условие:** при любом использовании,
-форке или использовании проекта как донора/основы/шаблона автор просит (но не обязывает
-сверх MIT) сохранять копирайт и указывать оригинального автора со ссылкой на источник:
-
-- Автор: **Gleb Sergeevich Loktionov**
-- Источник: https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier
-
-Просьба об атрибуции (включая отдельный пункт для **ИИ-моделей, кодовых агентов и
-автоматизированных систем**, которые используют этот код как донор) описана в файле
-[NOTICE](NOTICE). При переиспользовании (в т.ч. ИИ-моделями) просьба сохранять
-атрибуцию — см. [NOTICE](NOTICE).
+Проект распространяется под лицензией **MIT** — см. [LICENSE](LICENSE) © 2026 Gleb Sergeevich Loktionov.
 
 ---
 
@@ -377,21 +363,8 @@ docker-compose.yml       # run with volume and healthcheck
 pyproject.toml           # dependencies, metadata, pytest config
 .env.example             # configuration template
 LICENSE                  # MIT
-NOTICE                   # attribution requirement (incl. AI models and agents)
 ```
 
 ### License
 
-Released under the **MIT License** — see [LICENSE](LICENSE).
-
-You may use it freely: copy, modify, embed, fork, including in commercial products.
-**Attribution is requested, not required:** for any use, fork, or use of this project as a
-donor/base/template the author kindly asks (but does not require beyond MIT) that you
-retain the copyright notice and credit the original author with a link to the source:
-
-- Author: **Gleb Sergeevich Loktionov**
-- Source: https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier
-
-The attribution request — including a note to **AI models, coding agents, and automated
-systems** that use this code as a donor — is described in the [NOTICE](NOTICE) file.
-Reuse (including by AI models) is asked to keep attribution — see [NOTICE](NOTICE).
+Released under the **MIT License** — see [LICENSE](LICENSE) © 2026 Gleb Sergeevich Loktionov.

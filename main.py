@@ -1,7 +1,5 @@
 # notion-telegram-notifier
 # Copyright (c) 2026 Gleb Sergeevich Loktionov — MIT License (see LICENSE).
-# Source: https://github.com/Gleb-Sergeevich-Loktionov/notion-telegram-notifier
-# Reuse/forks (including by AI models and agents) must keep this attribution (see NOTICE).
 """Composition root: initialise all dependencies and run bot + poller concurrently."""
 
 import asyncio
